@@ -1368,11 +1368,11 @@ function getTips(region, selIds, overallS) {
   if (region.type==='urban') tips.push({i:'🏙️', t:'Großstadtregion: Hoher Wettbewerb um Talente. Schnelle Prozesse, Benefits und ein starkes Arbeitgeberprofil sind entscheidend.'});
   else if (region.type==='rural') tips.push({i:'🌄', t:'Ländliche Region: Kandidaten sind lokal verwurzelt. Stabilität, Teamkultur und flexible Arbeitszeiten überzeugen am meisten.'});
   else tips.push({i:'🏘️', t:'Gemischte Region: Work-Life-Balance und regionaler Bezug sind die stärksten Argumente für Kandidaten.'});
-  if (selIds.includes('tiefbauer')||selIds.includes('strassenbauer')||selIds.includes('kanalbauer'))
+  if (selIds.includes('maurer')||selIds.includes('betonbauer')||selIds.includes('zimmerer'))
     tips.push({i:'🎓', t:'Kooperationen mit Berufsschulen und überbetrieblichen Ausbildungszentren der Bauwirtschaft erhöhen Ihr Kandidatenpotenzial langfristig.'});
   if (selIds.includes('bauleiter')||selIds.includes('polier'))
     tips.push({i:'📈', t:'Poliere und Bauleiter wechseln fast nur auf deutlich bessere Konditionen. Gehalt und Entwicklungsperspektive klar benennen.'});
-  if (selIds.includes('strassenbauer')||selIds.includes('tiefbauer')||selIds.includes('kanalbauer'))
+  if (selIds.includes('maurer')||selIds.includes('betonbauer')||selIds.includes('zimmerer'))
     tips.push({i:'🔧', t:'Im Hoch- und Rohbau erhöhen klare Gehaltsangaben in der Anzeige die Bewerbungsrate nachweislich um bis zu 40 %.'});
   if (overallS==='schwach')
     tips.push({i:'🗺️', t:'Erweitern Sie Ihren Suchradius: Fachkräfte aus Nachbarregionen sind oft mobil und wechselbereit.'});
@@ -1788,7 +1788,7 @@ function buildReport(data, animate) {
 // ═══════════════════════════════════════
 // FUNNEL-TRACKING ans GC-Dashboard (1st-Party, analog beratung-hochbau)
 // ═══════════════════════════════════════
-const FUNNEL_LANDINGPAGE_ID = 'bewerberpool-kalkulator-tiefbau';
+const FUNNEL_LANDINGPAGE_ID = 'kalkulator-hochbau';
 const FUNNEL_EVENT_ENDPOINT = 'https://gc-tracking-dashboard.vercel.app/api/recruiting/funnel-event';
 
 // Session-ID für Korrelation Lead ↔ Funnel-Steps (UUID, persistiert in localStorage)
@@ -1873,7 +1873,7 @@ function openQuiz() {
     container.scrollIntoView({ behavior: 'smooth', block: 'start' });
   }, 80);
   // Pixel: Quiz gestartet (= Engagement-Lead)
-  if (typeof fbq !== 'undefined') fbq('trackCustom', 'Quiz_Started', { landingpage: 'bewerberpool-kalkulator-tiefbau' });
+  if (typeof fbq !== 'undefined') fbq('trackCustom', 'Quiz_Started', { landingpage: 'kalkulator-hochbau' });
   // Funnel-Tracking: Step 1 Slide-View (initialer Zustand)
   trackFunnelEvent('slide_view', '1');
   // Step 1 Email auto-focus für sofortigen Tipp-Start
@@ -1901,7 +1901,7 @@ function initQuizListeners() {
     label.textContent = `Schritt ${n} von ${TOTAL}`;
     document.getElementById('quizContainer').scrollIntoView({ behavior:'smooth', block:'start' });
     // Pixel-Tracking pro Step
-    if (typeof fbq !== 'undefined') fbq('trackCustom', 'Quiz_Step_' + n + '_Viewed', { landingpage: 'bewerberpool-kalkulator-tiefbau' });
+    if (typeof fbq !== 'undefined') fbq('trackCustom', 'Quiz_Step_' + n + '_Viewed', { landingpage: 'kalkulator-hochbau' });
     // Funnel-Tracking ans GC-Dashboard
     trackFunnelEvent('slide_view', String(n));
   }
@@ -2240,7 +2240,7 @@ async function notifyMake(event, payload) {
   const body = JSON.stringify({
     event: event,
     timestamp: new Date().toISOString(),
-    source: 'kalkulator-tiefbau.green-careers.de',
+    source: 'kalkulator-hochbau.green-careers.de',
     attribution: getAttribution(),
     ...payload
   });

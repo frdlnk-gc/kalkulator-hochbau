@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Terminanfrage erhalten | GreenCareers</title>
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+  <meta http-equiv="Pragma" content="no-cache">
+  <meta http-equiv="Expires" content="0">
+  <link rel="icon" type="image/png" href="favicon.png">
+  <link rel="apple-touch-icon" href="favicon.png">
+  <style>
+    :root {
+      --green-dark: #7A2E05;
+      --green-main: #C24A0A;
+      --green-light: #FF6B1A;
+      --green-pale: #FFF1E8;
+      --text-dark: #1a2b1b;
+      --text-gray: #546e5a;
+      --border: #FFD9BF;
+      --radius: 16px;
+      --shadow: 0 4px 24px rgba(229,90,10,0.10);
+      --gold: #b7860d;
+      --gold-bg: #fef9e7;
+    }
+    *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+    body {
+      font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+      background: #FBF4EE; color: var(--text-dark);
+      min-height: 100vh; line-height: 1.55; font-size: 16px;
+    }
+
+    /* ── HEADER ── */
+    header {
+      background: linear-gradient(155deg, #7A2E05, var(--green-main));
+      color: #fff; padding: 28px 20px; text-align: center;
+    }
+    .logo-row {
+      display: inline-flex; align-items: center; gap: 10px;
+      text-decoration: none;
+    }
+    .logo-icon { width: 38px; height: 38px; background: #FF8533; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 20px; }
+    .logo-text { font-size: 1.1rem; font-weight: 800; color: #fff; }
+
+    /* ── MAIN ── */
+    main { max-width: 640px; margin: 0 auto; padding: 32px 16px 64px; }
+
+    /* ── CONFIRMATION ── */
+    .confirm-card {
+      background: #fff; border-radius: var(--radius);
+      padding: 36px 28px; box-shadow: var(--shadow);
+      text-align: center; margin-bottom: 28px;
+    }
+    .check-wrap {
+      width: 72px; height: 72px;
+      background: var(--green-pale);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      margin: 0 auto 20px;
+      font-size: 2.2rem;
+      animation: popIn 0.5s cubic-bezier(0.34,1.56,0.64,1) forwards;
+    }
+    @keyframes popIn { from { transform: scale(0); opacity: 0; } to { transform: scale(1); opacity: 1; } }
+    .confirm-card h1 { font-size: clamp(1.4rem, 4vw, 1.8rem); font-weight: 900; margin-bottom: 12px; color: var(--green-dark); line-height: 1.2; }
+    .confirm-card p  { font-size: 0.95rem; color: var(--text-gray); max-width: 420px; margin: 0 auto; line-height: 1.6; }
+    .confirm-detail {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: var(--green-pale); color: var(--green-dark);
+      font-size: 0.82rem; font-weight: 700;
+      padding: 8px 16px; border-radius: 20px; margin-top: 16px;
+    }
+
+    /* ── DIVIDER ── */
+    .section-divider {
+      display: flex; align-items: center; gap: 14px;
+      margin: 4px 0 24px; color: var(--text-gray); font-size: 0.8rem;
+    }
+    .section-divider::before,
+    .section-divider::after { content:''; flex:1; height:1px; background: var(--border); }
+
+    /* ── UPSELL CARD ── */
+    .upsell-card {
+      background: #fff; border-radius: var(--radius);
+      box-shadow: var(--shadow); overflow: hidden;
+      margin-bottom: 20px;
+    }
+    .upsell-header {
+      background: linear-gradient(135deg, #7A2E05, var(--green-main));
+      color: #fff; padding: 22px 24px;
+      position: relative; overflow: hidden;
+    }
+    .upsell-header::after {
+      content: '📘';
+      position: absolute; right: 20px; top: 50%;
+      transform: translateY(-50%);
+      font-size: 3rem; opacity: 0.15;
+    }
+    .upsell-eyebrow {
+      display: inline-flex; align-items: center; gap: 6px;
+      background: rgba(255,255,255,0.2);
+      font-size: 0.74rem; font-weight: 700;
+      text-transform: uppercase; letter-spacing: 0.5px;
+      padding: 4px 11px; border-radius: 20px; margin-bottom: 10px;
+    }
+    .upsell-header h2 { font-size: clamp(1.1rem, 3.5vw, 1.35rem); font-weight: 900; line-height: 1.25; margin-bottom: 6px; }
+    .upsell-header p  { font-size: 0.85rem; opacity: 0.88; }
+
+    .upsell-body { padding: 24px 24px 28px; }
+
+    /* Buttons */
+    .btn-primary {
+      width: 100%; padding: 17px; border: none; border-radius: 50px;
+      font-size: 1rem; font-weight: 800; cursor: pointer;
+      transition: transform 0.15s, box-shadow 0.15s;
+      min-height: 54px; -webkit-appearance: none;
+    }
+    .btn-green {
+      background: linear-gradient(135deg, var(--green-dark), var(--green-light));
+      color: #fff;
+      box-shadow: 0 4px 16px rgba(194,74,10,0.35);
+    }
+    .btn-green:hover { transform: translateY(-2px); box-shadow: 0 6px 22px rgba(194,74,10,0.45); }
+    .btn-primary:active { transform: translateY(0); }
+
+    .privacy-note { font-size: 0.72rem; color: var(--text-gray); text-align: center; margin-top: 12px; line-height: 1.5; }
+    .privacy-note a { color: var(--green-main); }
+
+    /* Footer */
+    footer { text-align: center; padding: 28px 20px; color: var(--text-gray); font-size: 0.8rem; line-height: 1.6; }
+    footer a { color: var(--green-main); text-decoration: none; }
+
+    @keyframes fadeUp { from { opacity:0; transform:translateY(16px); } to { opacity:1; transform:translateY(0); } }
+    .fade-up { animation: fadeUp 0.4s ease forwards; }
+
+    /* ── REPORT PREVIEW (cover mockup + feature list) ── */
+    .report-preview {
+      display: grid; grid-template-columns: 130px 1fr;
+      gap: 18px; align-items: start;
+      margin-bottom: 22px; padding: 18px;
+      background: #f8fcf8; border: 1px solid var(--border);
+      border-radius: 14px;
+    }
+    @media (max-width: 520px) {
+      .report-preview { grid-template-columns: 96px 1fr; gap: 14px; padding: 14px; }
+    }
+    .preview-cover {
+      background: linear-gradient(160deg, var(--green-dark) 0%, var(--green-main) 100%);
+      color: #fff; border-radius: 8px; padding: 12px 10px;
+      min-height: 180px; position: relative; overflow: hidden;
+      box-shadow: 0 6px 16px rgba(229,90,10,0.25);
+      font-family: 'Segoe UI', sans-serif;
+    }
+    .preview-cover::after {
+      content: ''; position: absolute; top: -20px; right: -20px;
+      width: 60px; height: 60px; border-radius: 50%;
+      background: rgba(255,133,51,0.3);
+    }
+    .pc-top { font-size: 0.55rem; font-weight: 800; letter-spacing: 0.8px; }
+    .pc-kicker { font-size: 0.5rem; font-weight: 700; margin-top: 18px; color: #FFD9BF; letter-spacing: 0.6px; }
+    .pc-title { font-size: 1rem; font-weight: 900; line-height: 1.05; margin-top: 4px; }
+    .pc-year { font-size: 1rem; font-weight: 900; color: #FF8533; line-height: 1; margin-top: 2px; }
+    .pc-firma { font-size: 0.55rem; color: #FFD9BF; margin-top: 14px; font-weight: 600; position: relative; z-index: 2; word-break: break-word; }
+    @media (max-width: 520px) {
+      .pc-top { font-size: 0.48rem; }
+      .pc-kicker { margin-top: 14px; font-size: 0.45rem; }
+      .pc-title { font-size: 0.8rem; }
+      .pc-year { font-size: 0.85rem; }
+      .pc-firma { font-size: 0.5rem; margin-top: 10px; }
+    }
+
+    .preview-desc { padding-top: 2px; }
+    .pd-badge {
+      display: inline-block; background: var(--green-main);
+      color: #fff; font-size: 0.68rem; font-weight: 800;
+      padding: 3px 9px; border-radius: 20px;
+      letter-spacing: 0.4px; margin-bottom: 8px;
+    }
+    .preview-desc h4 {
+      font-size: 0.95rem; color: var(--green-dark);
+      font-weight: 800; margin-bottom: 10px; line-height: 1.3;
+    }
+    .pd-list { list-style: none; padding: 0; }
+    .pd-list li {
+      font-size: 0.83rem; color: var(--text-dark); line-height: 1.45;
+      padding: 5px 0 5px 22px; position: relative;
+    }
+    .pd-list li::before {
+      content: '✓'; position: absolute; left: 0; top: 5px;
+      color: var(--green-main); font-weight: 900; font-size: 0.9rem;
+    }
+    .pd-list strong { color: var(--green-dark); }
+  </style>
+</head>
+<body>
+
+<header>
+  <a href="/" class="logo-row">
+    <img src="logo-white.png" alt="GreenCareers" style="height:38px;width:auto;">
+  </a>
+</header>
+
+<main>
+
+  <!-- ── CONFIRMATION ── -->
+  <div class="confirm-card fade-up">
+    <div class="check-wrap">✅</div>
+    <h1>Vielen Dank, <span id="confirmName">!</span></h1>
+    <p>Wir haben Ihre Terminanfrage erhalten und melden uns innerhalb von <strong>24 Stunden</strong> per WhatsApp bei Ihnen zurück.</p>
+    <div class="confirm-detail">
+      📍 <span id="confirmFirma"></span>
+    </div>
+  </div>
+
+  <!-- ── REPORT DOWNLOAD (kostenloses Dankeschön) ── -->
+  <div class="upsell-card fade-up">
+    <div class="upsell-header">
+      <div class="upsell-eyebrow">📘 Ihr kostenloses Dankeschön</div>
+      <h2>Recruiting-Report 2026 – Hochbau</h2>
+      <p>Als Dankeschön für Ihre Terminanfrage: unser kompletter Branchen-Report direkt zum Download. Keine weitere Dateneingabe nötig.</p>
+    </div>
+
+    <div class="upsell-body">
+
+      <div class="report-preview">
+        <div class="preview-cover">
+          <div class="pc-top">GREENCAREERS</div>
+          <div class="pc-kicker">RECRUITING-REPORT</div>
+          <div class="pc-title">Hochbau-<br>Recruiting</div>
+          <div class="pc-year">2026</div>
+          <div class="pc-firma">Branchen-Report</div>
+        </div>
+        <div class="preview-desc">
+          <div class="pd-badge">📥 Kostenlos für Sie</div>
+          <h4>Das steckt im Report</h4>
+          <ul class="pd-list">
+            <li><strong>Arbeitsmarkt im Hochbau:</strong> Wie eng der Fachkräftemarkt 2026 wirklich ist</li>
+            <li><strong>Gehalts-Benchmarks</strong> für Maurer, Straßenbauer, Polier &amp; Bauleiter</li>
+            <li><strong>Die wirksamsten Recruiting-Kanäle</strong> für Bau-Betriebe</li>
+            <li><strong>Konkrete Maßnahmen</strong>, mit denen Sie schneller an qualifizierte Bewerber kommen</li>
+            <li><strong>Praxisbeispiele</strong> aus echten Hochbau-Betrieben</li>
+          </ul>
+        </div>
+      </div>
+
+      <div style="text-align:center;padding:4px 0 0">
+        <a href="recruiting-report-2026-hochbau.pdf" download="GreenCareers-Recruiting-Report-2026-Hochbau.pdf"
+           class="btn-primary btn-green"
+           style="display:inline-flex;align-items:center;justify-content:center;gap:10px;width:auto;padding:16px 36px;min-height:auto;text-decoration:none;font-size:0.98rem">
+          📥 Report jetzt herunterladen (PDF)
+        </a>
+        <p class="privacy-note">Kostenlos · Keine weitere Dateneingabe · Sofort als PDF</p>
+      </div>
+
+    </div>
+  </div>
+
+</main>
+
+<footer>
+  © 2025 <a href="https://www.green-careers.de">GreenCareers</a> – Karriereplattform für die grüne Branche<br>
+  <span style="font-size:0.73rem">Bei Fragen: <a href="mailto:hello@green-careers.de">hello@green-careers.de</a></span>
+</footer>
+
+<script>
+// ── Confirmation-Card personalisieren ──
+// Lead-Daten kommen aus dem Buchungs-Flow von index.html (URL-Params + localStorage).
+const params = new URLSearchParams(window.location.search);
+let stored = {};
+try {
+  stored = JSON.parse(localStorage.getItem('gc_lead') || sessionStorage.getItem('gc_lead') || '{}');
+} catch (e) {}
+
+const leadData = {
+  anrede:   params.get('anrede')   || stored.anrede   || '',
+  vorname:  params.get('vorname')  || stored.vorname  || '',
+  nachname: params.get('nachname') || stored.nachname || '',
+  name:     params.get('name')     || stored.name     || '',
+  firma:    params.get('firma')    || stored.firma    || ''
+};
+
+let greetingText = '';
+if (leadData.anrede && leadData.nachname) greetingText = leadData.anrede + ' ' + leadData.nachname;
+else if (leadData.nachname) greetingText = leadData.nachname;
+else if (leadData.vorname)  greetingText = leadData.vorname;
+else if (leadData.name)     greetingText = leadData.name;
+
+document.getElementById('confirmName').textContent = greetingText ? greetingText + '!' : '!';
+document.getElementById('confirmFirma').textContent = leadData.firma || 'Ihr Unternehmen';
+</script>
+</body>
+</html>
